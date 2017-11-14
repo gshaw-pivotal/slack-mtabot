@@ -1,0 +1,15 @@
+{
+  "name": "mtabot",
+  "version": "1.0.0",
+  "description": "NYC MTA slackbot",
+  "main": "src/mta_bot.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha --recursive"
+  },
+  "keywords": [
+    "mta",
+    "slack",
+    "slackbot"
+  ],
+  "author": "gshaw-pivotal"
+}
