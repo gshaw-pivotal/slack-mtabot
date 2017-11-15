@@ -11,5 +11,8 @@
     "slack",
     "slackbot"
   ],
-  "author": "gshaw-pivotal"
+  "author": "gshaw-pivotal",
+  "dependencies": {
+    "botkit": "^0.5.4"
+  }
 }
