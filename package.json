@@ -14,5 +14,10 @@
   "author": "gshaw-pivotal",
   "dependencies": {
     "botkit": "^0.5.4"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "botkit-mock": "^0.1.4",
+    "mocha": "^4.0.1"
   }
 }
