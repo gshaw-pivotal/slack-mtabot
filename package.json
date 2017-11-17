@@ -4,7 +4,7 @@
   "description": "NYC MTA slackbot",
   "main": "src/mta_bot.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha --recursive"
+    "test": "jest"
   },
   "keywords": [
     "mta",
@@ -16,8 +16,7 @@
     "botkit": "^0.5.4"
   },
   "devDependencies": {
-    "assert": "^1.4.1",
     "botkit-mock": "^0.1.4",
-    "mocha": "^4.0.1"
+    "jest": "^21.2.1"
   }
 }
