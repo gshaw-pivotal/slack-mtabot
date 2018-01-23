@@ -2,7 +2,7 @@
 
 A slackbot that you can ask for the current status of the subway line(s); including Staten Island; in NYC managed by the MTA. This slackbot is built using Springboot.
 
-## MTA Slackboot () vs Nysub Slackbot (slack-nysub) ##
+## MTA Slackbot (slack-mtabot) vs Nysub Slackbot (slack-nysub) ##
 
 This slackbot offers exactly the same features as our previous nysub slackbot. So why build another? Simply put the existing nysub slackboot spent more time not responding to our '@nysub' than actually providing useful information.
 
