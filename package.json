@@ -13,9 +13,11 @@
   ],
   "author": "gshaw-pivotal",
   "dependencies": {
+    "axios": "^0.17.1",
     "botkit": "^0.5.4"
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.12.0",
     "botkit-mock": "^0.1.4",
     "jest": "^21.2.1"
   }
