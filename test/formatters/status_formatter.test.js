@@ -17,6 +17,14 @@ describe('mta status formatter', () => {
                 expect(formatTextStatusSingleLine('n')).toContain(expectation)
             })
         })
+
+        describe('when an invalid line is requested', () => {
+            it('returns unknown train', () => {
+                expectation = 'Unknown train X'
+
+                expect(formatTextStatusSingleLine('x')).toContain(expectation)
+            })
+        })
     })
 
     describe('for the rich response', () => {
@@ -33,6 +41,14 @@ describe('mta status formatter', () => {
                 expectation = 'The current status of N trains is:'
 
                 expect(formatRichStatusSingleLine('n').attachments[0].pretext).toContain(expectation)
+            })
+        })
+
+        describe('when an invalid line is requested', () => {
+            it('returns unknown train', () => {
+                expectation = 'Unknown train X'
+
+                expect(formatRichStatusSingleLine('x').attachments[0].pretext).toContain(expectation)
             })
         })
     })
