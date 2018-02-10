@@ -141,6 +141,30 @@ describe('status controller test', () => {
                 })
             })
         })
+
+        describe('when an invalid line is provided', () => {
+            describe('upon receiving a direct message containing (but not ending with) the status-text keyword', () => {
+                it('should respond with a message indicating unknown train', () => {
+                    return this.bot.usersInput(
+                        [
+                            {
+                                type: 'direct_message',
+                                user: 'aUserId',
+                                channel: 'aChannel',
+                                messages: [
+                                    {
+                                        text: 'status-text x',
+                                        isAssertion: true
+                                    }
+                                ]
+                            }
+                        ]
+                    ).then((message) => {
+                        return expect(message.text).toContain('Unknown train X')
+                    })
+                })
+            })
+        })
     })
 
     describe('for rich text requests', () => {
@@ -272,6 +296,30 @@ describe('status controller test', () => {
                     ]
                 ).then((message) => {
                     return expect(message.attachments[0].pretext).toContain('The current status of R trains is:')
+                })
+            })
+        })
+
+        describe('when an invalid line is provided', () => {
+            describe('upon receiving a direct message containing (but not ending with) the status keyword', () => {
+                it('should respond with a message indicating unknown train', () => {
+                    return this.bot.usersInput(
+                        [
+                            {
+                                type: 'direct_message',
+                                user: 'aUserId',
+                                channel: 'aChannel',
+                                messages: [
+                                    {
+                                        text: 'status x',
+                                        isAssertion: true
+                                    }
+                                ]
+                            }
+                        ]
+                    ).then((message) => {
+                        return expect(message.attachments[0].pretext).toContain('Unknown train X')
+                    })
                 })
             })
         })
