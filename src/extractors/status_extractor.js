@@ -37,6 +37,10 @@ extractLineInfo = function (lineGroup) {
     var lineID = extractPattern(lineGroup, /<name>(.*?)<\/name>/).replace('<name>', '').replace('<\/name>', '')
 
     if (lineID.length > 1 && lineID !== 'SIR') {
+        if (lineID === 'NQR') {
+            lineID = 'NQRW'
+        }
+
         for (var index = 0; index < lineID.length; index++) {
             subwayLines.set(lineID.charAt(index), '*GOOD SERVICE*')
         }

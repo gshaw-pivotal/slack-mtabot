@@ -31,4 +31,9 @@ describe('processing status extractor', () => {
         const result = getLineStatus('4')
         expect(result).toBe('*GOOD SERVICE*')
     })
+
+    it('for the W line that is missing from the status file, it returns the status for that line ', function () {
+        const result = getLineStatus('W')
+        expect(result).toBe('*GOOD SERVICE*')
+    })
 })
