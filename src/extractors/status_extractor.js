@@ -34,6 +34,7 @@ extractSubwayLineGroups = function (text) {
 }
 
 extractLineInfo = function (lineGroup) {
+    var subwayLineInfo
     var lineID = extractPattern(lineGroup, /<name>(.*?)<\/name>/).replace('<name>', '').replace('<\/name>', '')
 
     if (lineID.length > 1 && lineID !== 'SIR') {
@@ -42,11 +43,13 @@ extractLineInfo = function (lineGroup) {
         }
 
         for (var index = 0; index < lineID.length; index++) {
-            subwayLines.set(lineID.charAt(index), '*GOOD SERVICE*')
+            subwayLineInfo = buildSubwayLineInfo(lineID.charAt(index), lineGroup)
+            subwayLines.set(lineID.charAt(index), subwayLineInfo)
         }
     }
     else {
-        subwayLines.set(lineID, '*GOOD SERVICE*')
+        subwayLineInfo = buildSubwayLineInfo(lineID, lineGroup)
+        subwayLines.set(lineID, subwayLineInfo)
     }
 }
 
@@ -57,4 +60,8 @@ extractPattern = function (text, regex) {
         return result[0]
     }
     return ''
+}
+
+buildSubwayLineInfo = function (line, lineGroup) {
+    return '*GOOD SERVICE*'
 }
