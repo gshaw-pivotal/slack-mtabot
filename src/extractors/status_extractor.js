@@ -36,7 +36,14 @@ extractSubwayLineGroups = function (text) {
 extractLineInfo = function (lineGroup) {
     var lineID = extractPattern(lineGroup, /<name>(.*?)<\/name>/).replace('<name>', '').replace('<\/name>', '')
 
-    subwayLines.set(lineID, '*GOOD SERVICE*')
+    if (lineID.length > 1 && lineID !== 'SIR') {
+        for (var index = 0; index < lineID.length; index++) {
+            subwayLines.set(lineID.charAt(index), '*GOOD SERVICE*')
+        }
+    }
+    else {
+        subwayLines.set(lineID, '*GOOD SERVICE*')
+    }
 }
 
 extractPattern = function (text, regex) {

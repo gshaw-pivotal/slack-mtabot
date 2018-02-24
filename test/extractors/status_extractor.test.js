@@ -21,4 +21,14 @@ describe('processing status extractor', () => {
         const result = getLineStatus('7')
         expect(result).toBe('*GOOD SERVICE*')
     })
+
+    it('for the SIR line, it returns the status of that line', () => {
+        const result = getLineStatus('SIR')
+        expect(result).toBe('*GOOD SERVICE*')
+    })
+
+    it('for a subway line part of a group, it returns the status for that line ', function () {
+        const result = getLineStatus('4')
+        expect(result).toBe('*GOOD SERVICE*')
+    })
 })
