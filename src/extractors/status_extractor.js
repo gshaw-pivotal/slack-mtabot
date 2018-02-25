@@ -81,7 +81,7 @@ cleanupTextSegment = function (text) {
                 .replace(/bull;/g, ' ')
                 .replace(/\\[TP\\]/g, ' ')
                 .replace(/\\[ad\\]/g, ' ')
-                .replace(/Â/, '')
+                .replace(/Â/g, '')
 
     var start = text.indexOf('&lt;')
     var end

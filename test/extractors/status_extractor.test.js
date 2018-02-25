@@ -41,4 +41,9 @@ describe('processing status extractor', () => {
         const result = getLineStatus('G')
         expect(result).toBe('*DELAYS* 03/13/2017 11:49PM\nDelays Posted: 03/13/2017 11:49PM Due to FDNY Activity at 4 Av-9 St, southbound [F] and [G] trains are running with delays. Allow additional travel time.')
     })
+
+    it('for a subway line part of a group and has a service change, it returns the status for that line, reflecting the service change', function () {
+        const result = getLineStatus('E')
+        expect(result).toBe('*SERVICE CHANGE* 03/13/2017 11:42PM\nService Change Posted: 03/13/2017 11:42PM Due to NYC Transit Cold Weather Plan, the following service changes are in effect: [E] trains are running local between Queens Plaza and Forest Hills-71 Av in both directions. [F] trains are running local between 21 St-Queensbridge and Forest Hills-71 Av in both directions. Allow additional travel time.')
+    })
 })
