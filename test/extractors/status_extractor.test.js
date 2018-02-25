@@ -36,4 +36,9 @@ describe('processing status extractor', () => {
         const result = getLineStatus('W')
         expect(result).toBe('*GOOD SERVICE*')
     })
+
+    it('for a subway line not part of a group and has delays, it returns the status for that line, reflecting the delay ', function () {
+        const result = getLineStatus('G')
+        expect(result).toBe('*DELAYS* 03/13/2017 11:49PM\nDelays Posted: 03/13/2017 11:49PM Due to FDNY Activity at 4 Av-9 St, southbound [F] and [G] trains are running with delays. Allow additional travel time.')
+    })
 })

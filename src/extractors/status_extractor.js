@@ -2,7 +2,7 @@ var subwayLines = new Map()
 
 getLineStatus = function (line) {
     if (subwayLines.has(line)) {
-        return subwayLines.get(line)
+        return subwayLines.get(line).trim()
     }
 
     return 'Line not found'
@@ -62,6 +62,45 @@ extractPattern = function (text, regex) {
     return ''
 }
 
+extractTextSegment = function (text) {
+    var textStartIndex = text.indexOf('<text>')
+    var textEndIndex = text.indexOf('</text>')
+
+    if (textStartIndex > -1 && (textEndIndex > (textStartIndex + 6))) {
+        return text.substring(textStartIndex + 6, textEndIndex).trim()
+    }
+
+    return ''
+}
+
+cleanupTextSegment = function (text) {
+    text = text.replace(/\\r/g, '')
+                .replace(/\\n/g, '')
+                .replace(/&amp;/g, ' ')
+                .replace(/nbsp;/g, ' ')
+                .replace(/bull;/g, ' ')
+                .replace(/\\[TP\\]/g, ' ')
+                .replace(/\\[ad\\]/g, ' ')
+                .replace(/Â/, '')
+
+    var start = text.indexOf('&lt;')
+    var end
+
+    while (start >= 0) {
+        end = text.indexOf('&gt;', start)
+        text = text.substring(0, start) + ' ' + text.substring(end + 4)
+        start = text.indexOf('&lt;')
+    }
+
+    text = text.replace(/\s{2,}/g, ' ')
+
+    return text.trim()
+}
+
 buildSubwayLineInfo = function (line, lineGroup) {
-    return '*GOOD SERVICE*'
+    return '*' +
+        extractPattern(lineGroup, /<status>(.*?)<\/status>/).replace('<status>', '').replace('<\/status>', '*') +
+        extractPattern(lineGroup, /<Date>(.*?)<\/Date>/).replace('<Date>', ' ').replace('<\/Date>', '') +
+        extractPattern(lineGroup, /<Time>(.*?)<\/Time>/).replace('<Time>', ' ').replace('<\/Time>', '\n') +
+        cleanupTextSegment(extractTextSegment(lineGroup))
 }
