@@ -97,10 +97,25 @@ cleanupTextSegment = function (text) {
     return text.trim()
 }
 
+checkStatusAppliesToLine = function (line, status) {
+    if (status.indexOf('['+line+']') >= 0 || status.length == 0) {
+        return status
+    }
+
+    var lineList = ''
+    var lineIDInStatusMessage = status.match(/\[(.*?)\]/g)
+
+    for (var index = 0; index < lineIDInStatusMessage.length; index++) {
+        lineList = lineList + lineIDInStatusMessage[index] + ' '
+    }
+
+    return 'Line is not directly affected, please see ' + lineList + 'for more info.'
+}
+
 buildSubwayLineInfo = function (line, lineGroup) {
     return '*' +
         extractPattern(lineGroup, /<status>(.*?)<\/status>/).replace('<status>', '').replace('<\/status>', '*') +
         extractPattern(lineGroup, /<Date>(.*?)<\/Date>/).replace('<Date>', ' ').replace('<\/Date>', '') +
         extractPattern(lineGroup, /<Time>(.*?)<\/Time>/).replace('<Time>', ' ').replace('<\/Time>', '\n') +
-        cleanupTextSegment(extractTextSegment(lineGroup))
+        checkStatusAppliesToLine(line, cleanupTextSegment(extractTextSegment(lineGroup)))
 }
