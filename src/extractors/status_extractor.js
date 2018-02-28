@@ -106,7 +106,9 @@ checkStatusAppliesToLine = function (line, status) {
     var lineIDInStatusMessage = status.match(/\[(.*?)\]/g)
 
     for (var index = 0; index < lineIDInStatusMessage.length; index++) {
-        lineList = lineList + lineIDInStatusMessage[index] + ' '
+        if (lineList.indexOf(lineIDInStatusMessage[index]) == -1) {
+            lineList = lineList + lineIDInStatusMessage[index] + ' '
+        }
     }
 
     return 'Line is not directly affected, please see ' + lineList + 'for more info.'

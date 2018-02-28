@@ -47,8 +47,13 @@ describe('processing status extractor', () => {
         expect(result).toBe('*SERVICE CHANGE* 03/13/2017 11:42PM\nService Change Posted: 03/13/2017 11:42PM Due to NYC Transit Cold Weather Plan, the following service changes are in effect: [E] trains are running local between Queens Plaza and Forest Hills-71 Av in both directions. [F] trains are running local between 21 St-Queensbridge and Forest Hills-71 Av in both directions. Allow additional travel time.')
     })
 
-    it('for a subway line that is marked with a delay, but not directly affected, returns the status indicating the line is not directly affected', function () {
+    it('for a subway line that is marked with a service change, but not directly affected, returns the status indicating the line is not directly affected', function () {
         const result = getLineStatus('A')
         expect(result).toBe('*SERVICE CHANGE* 03/13/2017 11:42PM\nLine is not directly affected, please see [E] [F] for more info.')
+    })
+
+    it('for a subway line that is marked with a delay, but not directly affected, returns the status indicating the line is not directly affected', function () {
+        const result = getLineStatus('B')
+        expect(result).toBe('*DELAYS* 03/13/2017 11:49PM\nLine is not directly affected, please see [F] [G] [E] [D] for more info.')
     })
 })
