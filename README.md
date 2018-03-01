@@ -20,24 +20,31 @@ Thus it was decided to recreate the nysub with nodejs to see if we could get bet
 
 ## Integration with Slack ##
 
-Bots and apps need to be given permission to integrate with slack. Thus you need to obtain a Slack API token for the bot. Once you have said key, place it in the application.properties file.
+Bots and apps need to be given permission to integrate with slack. Thus you need to obtain a Slack API token for the bot.
 
-```
-    slackBotToken=YOUR_SLACK_API_TOKEN
-```
+Once a slack api token is obtained, it will need to be provided to the bot as an environment variable named 'token'.
 
-When obtaining the API token you also have to give the bot a name that will be used to address it within slack. We used 'nysub', but you may use whatever name you like.
+When obtaining the API token you also have to give the bot a name that will be used to address it within slack. We used 'mtabot', but you may use whatever name you like.
 
 After the slackbot is running / deployed it will not have access to any channels until invited. Bots are invited just the same as any other slack user.
+
+## Starting mtabot Locally ##
+
+mtabot can be started locally with the following command executed from the root of this repo.
+
+```
+    token=SLACK_API_TOKEN node src/mta_bot.js
+```
+
 
 ## Using mta Slackbot ##
 
 After being invited into a slack channel, the bot can be interacted with the following commands:
 
-1. '@nysub' results in the bot responding with instructions on how to use it.
-2. '@nysub uptime' results in the bot responding with how long it has been online.
-3. '@nysub status' results in the bot responding with the current reported status of all of the MTA's subway lines.
-4. '@nysub status x' where x is a subway line identifier, results in the bot responding with the status of the specified subway line. This command can include multiple lines, separated by either space or comma.
+1. '@mtabot' results in the bot responding with instructions on how to use it.
+2. '@mtabot uptime' results in the bot responding with how long it has been online.
+3. '@mtabot status' results in the bot responding with the current reported status of all of the MTA's subway lines.
+4. '@mtabot status x' where x is a subway line identifier, results in the bot responding with the status of the specified subway line. This command can include multiple lines, separated by either space or comma.
 
 When the status of a subway line is returned, it comes in the following format;
 
